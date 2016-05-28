@@ -1,0 +1,67 @@
+#Install Java 8
+##########################################################################
+sudo apt-add-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+java -version
+
+
+#Install Scala
+##########################################################################
+wget http://www.scala-lang.org/files/archive/scala-2.11.8.deb
+sudo dpkg -i scala-2.11.8.deb
+sudo apt-get install scala
+cd ~
+sudo cat >> .bashrc
+export SCALA_HOME=/usr/local/src/scala/scala-2.­11.8
+export PATH=$SCALA_HOME/bin:$PATH
+
+
+#Install Git
+##########################################################################
+sudo apt-get install git
+
+#Install Spark
+##########################################################################
+wget http://apache-mirror.rbc.ru/pub/apache/spark/spark-1.6.0/spark-1.6.0.tgz 
+tar -xvf spark-1.6.0.tgz
+cd spark-1.6.0
+sbt/sbt assembly
+
+#Spark Web UI
+#It is needed to open port 8080 via Azure VM endpoints for our VM
+#Spark Standalone cluster comes with administrative web UI
+#Our working environment: http://sparklyapina.cloudapp.net:8080
+
+#FTP
+##########################################################################
+sudo apt-get install vsftpd
+sudo vi /etc/vsftpd.conf
+
+local_enable=YES
+write_enable=YES
+anonymous_enabled=NO
+pasv_enable=YES
+pasv_address=[Your public address]
+pasv_min_port=12000
+pasv_max_port=12003
+
+sudo service vsftpd restart
+
+
+#R 3.2.1
+##########################################################################
+sudo sh -c 'echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list'
+gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+gpg -a --export E084DAB9 | sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y install r-base
+
+sudo apt-get -y build-dep libcurl4-gnutls-dev
+sudo apt-get -y install libcurl4-gnutls-dev
+sudo apt-get install libxml2-dev 
+
+sudo apt-get install gdebi-core
+sudo apt-get install libapparmor1 # Required only for Ubuntu, not Debian
+wget http://download2.rstudio.org/rstudio-server-0.98.1103-amd64.deb
+sudo gdebi rstudio-server-0.98.1103-amd64.deb
