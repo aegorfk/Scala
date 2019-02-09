@@ -1,5 +1,5 @@
 # Recomendation Service
-![Example detection](assets/RFM.png)
+![Scheme](assets/scheme.png)
 ## Description
 
 I considered the draft law of e-checks, analysed the banking industry and created a data science product which provides 
@@ -7,6 +7,8 @@ personalised experience for banking customers. This was possible after the devel
 most relevant banking offers selection, based on the methods of collaborative filtering. These algorithms are implemented 
 for the scalable software platform Apache Spark in Scala and R. The experiments aimed at assessing the quality and 
 scalability of the implemented algorithms were conducted on the Microsoft Azure cloud service.
+
+![Diagram](assets/diagram.png)
 
 The repository includes:
 * Installation notes for environment deployment (**install_env.txt**)
@@ -17,7 +19,7 @@ The repository includes:
 * Initial datasets to make analysis (**bank.csv** and **Data.csv**)
 * Results (**Report.Rmd**) and action plan + marketing research (**diploma.docx**)
 
-![Trained model on Video](assets/sales.png)
+![Trained model](assets/results.png)
 
 ## Usage
 ### Requirements
